@@ -19,6 +19,16 @@ export class IniciopagePage implements OnInit {
     password: ""
    }
 
+   noticia = {
+     title: "",
+     userId: 1,
+     body: ""
+   }
+
+   post = {
+
+   }
+
 
   constructor(private storage: StorageService, 
     private activeroute: ActivatedRoute, private router: Router,
@@ -53,12 +63,29 @@ export class IniciopagePage implements OnInit {
   }
 
   llamarApiGet(){
-     this.api.getPosts(1).subscribe((response) => {
-        console.log(response);
+     this.api.getPosts(1).subscribe((res) => {
+        console.log(res);
      }, (error)=>{
        console.log(error);
      });
   }
+
+  llamarAllApiGet(){
+    this.api.getAllPosts().subscribe((res) => {
+       console.log(res);
+    }, (error)=>{
+      console.log(error);
+    });
+ }
+
+ crearNoticia(){
+  console.log(this.noticia);
+  this.api.insertPost(JSON.stringify(this.noticia)).subscribe((res) => {
+    console.log(res);
+ }, (error)=>{
+   console.log(error);
+ });
+ }
 
   ngOnInit() {
   }

@@ -12,12 +12,14 @@ export class PersistenceserviceService {
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   private listaNoticias: any = new BehaviorSubject([]);
-
+  
   
   tblNoticias: string = "CREATE TABLE IF NOT EXISTS noticia(id INTEGER PRYMARY KEY autoincrement, " +
                         " titulo VARCHAR(50) NOT NULL, texto TEXT NOT NULL);";
   
-  constructor(public platform: Platform, public database: SQLiteObject, private sqlite: SQLite) { }
+  constructor(public platform: Platform, public database: SQLiteObject, private sqlite: SQLite) { 
+    this.crearBD();
+  }
 
   
   crearBD(){
